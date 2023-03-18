@@ -1,0 +1,94 @@
+.wrapper {
+  &__homePage {
+    width: 100%;
+    height: 100%;
+
+    &--profileCard {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100vh;
+
+      .form {
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        background-color: white;
+        padding: 5px;
+        width: 40%;
+        height: 70%;
+        border-radius: 10px;
+
+        &--title {
+          display: flex;
+          justify-content: space-around;
+          flex-direction: column;
+          width: 100%;
+          height: 20%;
+
+          h2 {
+            font-family: $headerfont;
+          }
+          h1 {
+            font-size: 42px;
+            font-family: Arial Black, Gadget, sans-serif;
+            -webkit-animation: animatedBackground_b 5s linear infinite alternate;
+          }
+          @keyframes animatedBackground_b {
+            0% {
+              color: black;
+            }
+            10% {
+              color: black;
+            }
+            20% {
+              color: lightgray;
+            }
+            30% {
+              color: lightgrey;
+            }
+            40% {
+              color: gray;
+            }
+            50% {
+              color: gray;
+            }
+            60% {
+              color: #e8ff00;
+            }
+            70% {
+              color: #ff8b00;
+            }
+            80% {
+              color: #e800ff;
+            }
+            90% {
+              color: #ff008b;
+            }
+            100% {
+              color: #ff0000;
+            }
+          }
+        }
+        &--information {
+          display: flex;
+          justify-content: space-around;
+          align-items: flex-start;
+          flex-direction: column;
+          width: 100%;
+          height: 80%;
+
+          p {
+            font-family: $headerfont;
+            font-size: 20px;
+            margin-left: 5px;
+          }
+          span {
+            color: grey;
+          }
+        }
+      }
+    }
+  }
+}

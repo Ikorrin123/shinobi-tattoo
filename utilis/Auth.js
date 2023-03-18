@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
 const User = require("../models/User");
+const calendar = require("../models/calendar");
 const { SECRET } = require("../config");
 
 //to register the user(admin,user)
@@ -62,12 +63,7 @@ const userLogin = async (userCreds, role, res) => {
     });
   }
   // check the role
-  if (user.role !== role) {
-    return res.status(403).json({
-      message: "Please make sure you are logging in from the right portal.",
-      successs: false,
-    });
-  }
+
   // user existing and trying to signin from the right portal
 
   //check for the password
@@ -125,11 +121,41 @@ const serializeUser = (user) => {
   return {
     username: user.username,
     email: user.email,
-    name: user.name,
     _id: user._id,
     updatedAt: user.updatedAt,
     createdAt: user.createdAt,
   };
+};
+
+const opencalendar = async (data, user_id, res) => {
+  try {
+    console.log(data);
+    const userInformation = new calendar({
+      ...data,
+      user: user_id,
+    });
+    await userInformation.save();
+    return res.status(201).json({
+      message: "U can post infromation now",
+      successs: true,
+    });
+  } catch (err) {
+    console.log(err);
+    //implement logger fucntion (winston)
+    return res.status(500).json({
+      message: "unable to work with data",
+      successs: false,
+    });
+  }
+};
+
+const trying1 = (userInformation) => {
+  console.log(userInformation);
+};
+
+const validatePhone = async (phone) => {
+  let usercalendar = await calendar.findOne({ phone });
+  return usercalendar ? false : true;
 };
 
 module.exports = {
@@ -138,4 +164,6 @@ module.exports = {
   userRegister,
   userLogin,
   serializeUser,
+  opencalendar,
+  trying1,
 };

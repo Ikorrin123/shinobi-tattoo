@@ -8,6 +8,10 @@
       <router-link to="/calendar">Calendar</router-link>
     </nav>
     <div class="register">
+      <router-link v-if="this.auth" to="/profile">Profile</router-link>
+      <router-link v-if="this.auth" to="/"
+        ><button @click="logout">Logout</button></router-link
+      >
       <router-link to="/login"><button>Login</button></router-link>
     </div>
   </div>
@@ -60,9 +64,31 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   data() {
-    return {};
+    return {
+      auth: "",
+    };
+  },
+
+  mounted() {
+    axios
+      .get("http://127.0.0.1:5000/api/users/profile/", {
+        headers: { Authorization: localStorage.getItem("token") },
+      })
+      .then((res) => {
+        this.auth = res.data[0].user;
+        console.log(res.data[0].user);
+      });
+  },
+
+  methods: {
+    logout() {
+      localStorage.clear();
+      alert("you are logged out");
+      this.$router.go("/");
+    },
   },
 };
 </script>

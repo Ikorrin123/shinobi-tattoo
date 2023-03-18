@@ -1,18 +1,27 @@
 const router = require("express").Router();
+const ObjectId = require("mongodb").ObjectID;
+const calendar = require("../models/calendar");
 
 //bring in the User Registration function
 const {
   userAuth,
   userLogin,
-  checkRole,
   userRegister,
+  checkRole,
   serializeUser,
+  opencalendar,
+  trying1,
 } = require("../utilis/Auth");
 
 // users registration route
 router.post("/register-user", async (req, res) => {
   console.log(req.body);
   await userRegister(req.body, "user", res);
+});
+
+router.post("/calendar", userAuth, async (req, res) => {
+  console.log(req.body);
+  await opencalendar(req.body, req.user._id, res);
 });
 
 // admin registration route
@@ -32,7 +41,32 @@ router.post("/login-admin", async (req, res) => {
 
 //profile route
 router.get("/profile", userAuth, async (req, res) => {
-  return res.json(serializeUser(req.user));
+  await calendar
+    .find({ user: ObjectId(req.user._id) }) // day: req.body.day dla admina do modalu
+    .then(async (calendar) => {
+      console.log(calendar);
+      if (calendar) {
+        return res.json(calendar);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+router.get("/calendar", userAuth, async (req, res) => {
+  console.log(req.query.pickedDay);
+  await calendar
+    .find({ pickedDay: req.query.pickedDay }) // day: req.body.day dla admina do modalu
+    .then(async (calendar) => {
+      console.log(calendar);
+      if (calendar) {
+        return res.json(calendar);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 // users protected router
@@ -51,7 +85,7 @@ router.get(
   userAuth,
   checkRole(["admin"]),
   async (req, res) => {
-    return res.json("hello admin");
+    return res.json(req.user.role);
   }
 );
 
