@@ -21,7 +21,6 @@
         <input type="number" v-model="phone" />
         <label for="images" class="form--drop-container">
           <span>Drop illustrative photo here</span>
-          or
           <input type="file" @change="handleFileUpload($event)" />
         </label>
         <button @click="postUserInfromation" class="form--submit">
@@ -48,20 +47,23 @@ export default {
       surname: "",
       pickedDay: "",
       phone: "",
+      chosenImage: "",
       status: "",
       customerName: "",
       preview: null,
       image: null,
+      newValue: "",
+
       calendarSendInfo: {},
-      file: "",
 
       attributes: [
-        // This is a single attribute
         {
-          highlight: true, // Boolean, String, Object
-          dot: true, // Boolean, String, Object
+          dot: "red",
+          dates: {
+            start: new Date("1/1/2018"),
 
-          content: "red", // Boolean, String, Object
+            ordinalWeekdays: { [-1]: 6 }, // ...on the last Friday
+          },
         },
       ],
     };
@@ -70,6 +72,28 @@ export default {
   methods: {
     handleFileUpload(event) {
       this.file = event.target.files[0];
+      let p = Promise.resolve();
+      p = p.then(() =>
+        this.convertBase64(this.file).then((base64) => {
+          this.base64 = base64;
+          console.log(base64);
+        })
+      );
+    },
+
+    convertBase64(file) {
+      return new Promise((resolve, reject) => {
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+
+        fileReader.onload = () => {
+          resolve(fileReader.result);
+        };
+
+        fileReader.onerror = (error) => {
+          reject(error);
+        };
+      });
     },
     onDayClick(day) {
       axios
@@ -88,6 +112,7 @@ export default {
             .then((res) => {
               console.log(res);
               this.calendarSendInfo = res.data[0];
+              console.log(this.calendarSendInfo);
             });
         });
 
@@ -100,40 +125,45 @@ export default {
           date: day.date,
         });
         this.pickedDay = day.id;
-        console.log(day.id);
+        console.log(this.pickedDay);
+      }
+    },
+
+    previewImage: function (event) {
+      let input = event.target;
+      if (input.files) {
+        let reader = new FileReader();
+        reader.onload = (e) => {
+          this.preview = e.target.result;
+        };
+        this.image = input.files[0];
+        reader.readAsDataURL(input.files[0]);
       }
     },
 
     postUserInfromation() {
-      const formData = new FormData();
-      formData.append("file", this.file);
-      formData.append("name", this.name);
-      formData.append("surname", this.surname);
-      formData.append("phone", this.phone);
-      formData.append("pickedDay", this.pickedDay);
-      formData.append("state", this.state);
-
-      console.log(formData);
-
+      let userInformation = {
+        name: this.name,
+        surname: this.surname,
+        phone: this.phone,
+        pickedDay: this.pickedDay,
+        file: this.base64,
+      };
       axios
-        .post(
-          "http://localhost:5000/api/users/calendar",
-          formData,
-
-          {
-            headers: {
-              Authorization: localStorage.getItem("token"),
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        )
+        .post("http://localhost:5000/api/users/calendar", userInformation, {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+          },
+        })
         .then(
           (res) => {
-            console.log(res);
+            alert(res.data.message);
+            this.$router.go("/");
           },
 
           (errorCollect) => {
-            console.log(errorCollect.response);
+            alert(errorCollect.response.data.message);
+            console.log(errorCollect.response.data.message);
             this.errorReg = errorCollect.response.data.message;
           }
         );

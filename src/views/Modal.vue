@@ -10,7 +10,13 @@
           :src="current.name"
           class="wrapper__backdrop--modal modalMultiItem--artist"
         />
-        <h1>Cezary Kolenda</h1>
+        <h1>
+          {{
+            current.name == "/img/czarek.c9589387.jpg"
+              ? "Cezary Kolenda"
+              : "Adrian Kmiołek"
+          }}
+        </h1>
       </div>
     </div>
   </div>

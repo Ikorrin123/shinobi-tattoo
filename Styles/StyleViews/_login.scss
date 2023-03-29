@@ -288,11 +288,11 @@
             align-items: flex-start;
             position: relative;
             width: 80%;
-            height: 70%;
+            height: 60%;
             border-bottom: 2px solid #fff;
             margin-top: 20px;
 
-            .fa-envelope {
+            .fa-user {
               position: absolute;
               right: 8px;
               color: white;
@@ -525,6 +525,69 @@
       }
       .active {
         height: 65%;
+      }
+    }
+  }
+}
+@media (max-width: 576px) {
+  .wrapper {
+    &__homePage {
+      &--login {
+        .form {
+          width: 90%;
+          height: 70%;
+
+          &__boxRegister {
+            &--inputbox {
+              width: 80%;
+              height: 70%;
+              border-bottom: 2px solid #fff;
+              margin-top: 20px;
+
+              .fa-envelope {
+                top: 20px;
+              }
+              .fa-lock {
+                top: 20px;
+              }
+              .fa-user {
+                top: 20px;
+              }
+
+              label {
+                top: 40%;
+              }
+
+              input {
+                bottom: -15px;
+              }
+            }
+          }
+
+          &__boxLogin {
+            &--inputbox {
+              width: 80%;
+              height: 70%;
+
+              .fa-user {
+                top: 30px;
+              }
+              .fa-lock {
+                top: 30px;
+              }
+
+              input {
+                bottom: -20px;
+              }
+            }
+          }
+          .active {
+            transform: translateX(-500px);
+          }
+        }
+        .active {
+          height: 75%;
+        }
       }
     }
   }

@@ -1,3 +1,4 @@
+const { string } = require("joi");
 const mongoose = require("mongoose");
 const { Schema, model } = require("mongoose");
 
@@ -24,8 +25,11 @@ const calendarSchema = new Schema(
     },
 
     file: {
-      data: Buffer,
-      contentType: String,
+      type: String,
+      required: true,
+    },
+    contentType: {
+      type: String,
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,
@@ -34,7 +38,7 @@ const calendarSchema = new Schema(
     State: {
       type: String,
       default: "Pending",
-      enum: ["accepted", "Declined", "Pending"],
+      enum: ["accepted", "declined", "Pending"],
     },
   },
   { timestamps: true }

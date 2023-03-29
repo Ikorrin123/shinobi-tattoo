@@ -10,7 +10,7 @@
           class="wrapper__homePage--login form__boxLogin"
         >
           <h2>Login</h2>
-          <div class="form__boxRegister--inputbox">
+          <div class="form__boxLogin--inputbox">
             <font-awesome-icon icon="fa-solid fa-user" />
             <input v-model="loginUsername" type="text" required />
             <label for="">Username</label>
@@ -122,12 +122,11 @@ export default {
             localStorage.setItem("token", res.data.token);
 
             localStorage.setItem("auth", this.auth);
+
             this.$router.go("/");
-            console.log(res.data);
           }
         })
         .catch((errorLogin) => {
-          console.log(errorLogin.response);
           this.errorLog = errorLogin.response.data.message;
         });
     },

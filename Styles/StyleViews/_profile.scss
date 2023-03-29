@@ -92,3 +92,30 @@
     }
   }
 }
+
+@media (max-width: 576px) {
+  .wrapper {
+    &__homePage {
+      &--profileCard {
+        .form {
+          display: flex;
+          justify-content: flex-start;
+          flex-direction: column;
+          background-color: white;
+          padding: 5px;
+          width: 90%;
+          height: 60%;
+          border-radius: 10px;
+
+          &--information {
+            p {
+              font-family: $headerfont;
+              font-size: 18px;
+              margin-left: 5px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

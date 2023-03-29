@@ -10,6 +10,8 @@ const {
   checkRole,
   serializeUser,
   opencalendar,
+  answerCalendar,
+
   trying1,
 } = require("../utilis/Auth");
 
@@ -20,9 +22,19 @@ router.post("/register-user", async (req, res) => {
 });
 
 router.post("/calendar", userAuth, async (req, res) => {
-  console.log(req.body);
+  console.log(req.user._id);
   await opencalendar(req.body, req.user._id, res);
 });
+
+router.post(
+  "/calendar-answer",
+  userAuth,
+  checkRole(["admin"]),
+  async (req, res) => {
+    console.log(req.body);
+    await answerCalendar(req.body, req.body, res);
+  }
+);
 
 // admin registration route
 router.post("/register-admin", async (req, res) => {

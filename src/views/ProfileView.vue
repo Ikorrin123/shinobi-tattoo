@@ -46,7 +46,7 @@ export default {
       phone: "",
       day: "",
       state: "",
-      time: "17:00",
+      time: "",
     };
   },
   mounted() {
@@ -59,8 +59,9 @@ export default {
           (this.surname = res.data[0].surname),
           (this.phone = res.data[0].phone),
           (this.day = res.data[0].pickedDay),
-          (this.state = res.data[0].State);
-        console.log(res.data);
+          (this.state = res.data[0].State),
+          (this.time = res.data[0].time),
+          console.log(res);
       });
   },
 };

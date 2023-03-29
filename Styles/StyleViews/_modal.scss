@@ -54,3 +54,55 @@
     }
   }
 }
+
+@media (max-width: 991px) {
+  .wrapper {
+    &__backdrop {
+      &--modal {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        width: 90%;
+        height: 70%;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+
+        .modalMultiItem {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: center;
+          width: 100%;
+          height: 100%;
+          background-color: white;
+          position: relative;
+
+          &--pictures {
+            width: 100%;
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+            height: 80%;
+          }
+          &--artist {
+            position: absolute;
+            bottom: 10%;
+            width: 20%;
+            height: 15%;
+            border-radius: 50%;
+            border: 3px solid white;
+          }
+
+          h1 {
+            position: absolute;
+            font-family: $font;
+            font-weight: 700;
+            color: black;
+            bottom: 4%;
+            font-size: 24px;
+          }
+        }
+      }
+    }
+  }
+}

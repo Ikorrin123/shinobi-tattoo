@@ -1,19 +1,31 @@
 <template>
   <div class="wrapper__navigation">
-    <nav>
-      <p><span>SHINOBI</span> ART. TATTOO STUDIO</p>
-
+    <p><span>SHINOBI</span> ART. TATTOO STUDIO</p>
+    <nav class="wrapper__navigation--desktop">
       <router-link to="/">Home</router-link>
       <router-link to="/gallery">Gallery</router-link>
       <router-link to="/calendar">Calendar</router-link>
+
+      <div class="register">
+        <router-link v-if="this.auth" to="/profile">Profile</router-link>
+        <router-link v-if="this.auth" to="/"
+          ><button @click="logout">Logout</button></router-link
+        >
+        <router-link to="/login"><button>Login</button></router-link>
+      </div>
     </nav>
-    <div class="register">
-      <router-link v-if="this.auth" to="/profile">Profile</router-link>
-      <router-link v-if="this.auth" to="/"
-        ><button @click="logout">Logout</button></router-link
-      >
-      <router-link to="/login"><button>Login</button></router-link>
-    </div>
+    <nav class="wrapper__navigation--mobile">
+      <Slide right>
+        <router-link to="/">Home</router-link>
+        <router-link to="/gallery">Gallery</router-link>
+        <router-link to="/calendar">Calendar</router-link>
+        <router-link v-if="this.auth" to="/profile">Profile</router-link>
+        <router-link v-if="this.auth" to="/"
+          ><button @click="logout">Logout</button></router-link
+        >
+        <router-link to="/login"><button>Login</button></router-link>
+      </Slide>
+    </nav>
   </div>
   <router-view />
   <footer class="wrapper__footer">
@@ -54,7 +66,8 @@
       <h1>Location</h1>
       <p>Our studio is located in two cities</p>
       <h2>Ostrołęka</h2>
-      <span>Gorbatowa 5/4A</span>
+      <span>Gorbatowa</span>
+      <span> 5/4A</span>
       <span>07-410</span>
       <h2>Lipsko</h2>
       <span>Sandomierska 1</span>
@@ -65,7 +78,11 @@
 
 <script>
 import axios from "axios";
+import { Slide } from "vue3-burger-menu";
 export default {
+  components: {
+    Slide,
+  },
   data() {
     return {
       auth: "",

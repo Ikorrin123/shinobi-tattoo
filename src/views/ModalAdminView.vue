@@ -19,29 +19,60 @@
         </p>
       </div>
       <div class="wrapper__backdrop--modalAdmin picture">
-        <img :src="czarek" alt="" />
+        <img :src="calendarSendInfo.file" alt="" />
       </div>
       <div class="wrapper__backdrop--modalAdmin confirm">
-        <button class="confirm--buttonAccept">Accept</button>
-        <p>Time:<input type="text" /></p>
-        <button class="confirm--buttonDecline">Decline</button>
+        <button
+          @click="postUserState('accepted')"
+          class="confirm--buttonAccept"
+        >
+          Accept
+        </button>
+        <p>Time:<input v-model="time" type="text" /></p>
+        <button
+          @click="postUserState('declined')"
+          class="confirm--buttonDecline"
+        >
+          Decline
+        </button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 import czarek from "../assets/czarek.jpg";
 export default {
   data() {
     return {
       czarek: czarek,
+      auth: "",
+      user: "",
+      time: "",
     };
   },
   props: ["calendarSendInfo"],
   methods: {
     closeModalAdmin() {
       this.$emit("close");
+    },
+
+    postUserState(State) {
+      const data = {
+        id: this.calendarSendInfo._id,
+        State: State,
+        time: this.time,
+      };
+      axios
+        .post(`http://localhost:5000/api/users/calendar-answer/`, data, {
+          headers: { Authorization: localStorage.getItem("token") },
+        })
+        .then((res) => {
+          alert(res.data.message);
+          this.$router.go("/calendar");
+          console.log(res);
+        });
     },
   },
 };

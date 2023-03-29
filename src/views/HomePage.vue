@@ -4,10 +4,27 @@
       <div class="wrapper__homePage--artists col">
         <img :src="czarek" alt="" />
         <h2>Cezary Kolenda</h2>
+        <p>Information</p>
+        <div class="wrapper__homePage--artists col--information">
+          <p>Experience: 10+yers</p>
+          <p>
+            Styles: Traditional, Realism or Realistic, Watercolor , New School ,
+            Neo Traditional, Japanese , Blackwork, cartoon, black & grey,
+            surrealism, horror, individual projects
+          </p>
+        </div>
       </div>
       <div class="wrapper__homePage--artists col">
         <img :src="adrian" alt="" />
         <h2>Adrian Kmiołek</h2>
+        <p>Information</p>
+        <div class="wrapper__homePage--artists col--information">
+          <p>Experience: 2+years</p>
+          <p>
+            Styles: Traditional, Realism or Realistic, New School , Neo
+            Traditional,
+          </p>
+        </div>
       </div>
     </div>
     <div class="wrapper__homePage--gallery">
@@ -35,19 +52,18 @@
     <div v-bind:class="{ active: isActive }" class="wrapper__homePage--rules">
       <h1>Rules</h1>
       <ul>
-        <li>1. The client is obliged to read the regulations of the studio.</li>
         <li>
-          2. After setting the date for the tattoo, the client is obliged to pay
+          1. After setting the date for the tattoo, the client is obliged to pay
           the "deposit", which is associated with the acceptance of the
           applicable regulations.
         </li>
-        <li>3. The deposit is included in the price of the tattoo.</li>
-        <li>4. The deposit is completely non-refundable.</li>
+        <li>2. The deposit is included in the price of the tattoo.</li>
+        <li>3. The deposit is completely non-refundable.</li>
         <li>
-          5. The set date can be changed only once without losing the deposit,
+          4. The set date can be changed only once without losing the deposit,
           at least 3 days before it is set.
         </li>
-        <li>6. We do not make tattoos for minors.</li>
+        <li>5. We do not make tattoos for minors.</li>
       </ul>
       <div
         v-bind:class="{ active: isActive }"
@@ -56,59 +72,49 @@
       >
         <ul>
           <li>
-            7. We do not make tattoos for people under influence of alcohol,
+            6. We do not make tattoos for people under influence of alcohol,
             drugs.
           </li>
           <li>
-            8. The customer is obliged to inform tattoo artist about the state
+            7. The customer is obliged to inform tattoo artist about the state
             of health and admission medications, which may have a negative
             impact on procedure.
           </li>
           <li>
-            9. We do not make tattoos on freshly tanned skin or after performing
+            8. We do not make tattoos on freshly tanned skin or after performing
             other cosmetic skin treatments.
           </li>
           <li>
-            10. The tattoo artist has the right to refuse a tattoo if he
+            9. The tattoo artist has the right to refuse a tattoo if he
             considers that the client has not prepared properly for the
             procedure (see point: 7.8.9)
           </li>
           <li>
-            11. The client may come to the treatment with an accompanying person
-            only after prior inquiry and consent of the tattoo artist.
-          </li>
-          <li>
-            12. It is forbidden for children under 15 years of age to stay in
+            10. It is forbidden for children under 15 years of age to stay in
             the studio.
           </li>
-          <li>13. It is forbidden to bring animals to the studio.</li>
+          <li>11. It is forbidden to bring animals to the studio.</li>
           <li>
-            14. The tattoo artist is obliged to provide all information on the
-            care of the tattoo during the healing process.
-          </li>
-          <li>
-            15. The studio is not responsible for the healing process and side
+            12. The studio is not responsible for the healing process and side
             effects resulting from the customer's improper care of the tattoo.
           </li>
-          <li>16. Tattoo correction is not included in the price.</li>
+          <li>13. Tattoo correction is not included in the price.</li>
           <li>
-            17. The studio does not make tattoos from photos of already made
-            tattoos (i.e. plagiarism). The client is obliged to send the project
-            or determine the details of the project by the tattoo artist on the
-            day of acceptance of the regulations (on the day of registration).
+            14. The studio does not make tattoos from photos of already made
+            tattoos The client is obliged to send the project or determine the
+            details of the project by the tattoo artist on the day of acceptance
+            of the regulations (on the day of registration).
           </li>
           <li>
-            18. The price for the treatment is individual, it depends on the
+            15. The price for the treatment is individual, it depends on the
             place where the tattoo is made, its size, difficulty and the
             consumption of the necessary material needed to make it.
           </li>
           <li>
-            19. Gift vouchers purchased in the studio are valid for 3 months.
-            (during this time, the client is required to set the date of the
-            visit for the tattoo).
+            16. Gift vouchers purchased in the studio are valid for 3 months.
           </li>
           <li>
-            20. The studio is completely non-smoking/etc. and prohibition of
+            17. The studio is completely non-smoking/etc. and prohibition of
             alcohol consumption.
           </li>
         </ul>

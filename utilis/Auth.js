@@ -4,6 +4,7 @@ const passport = require("passport");
 const User = require("../models/User");
 const calendar = require("../models/calendar");
 const { SECRET } = require("../config");
+const ObjectId = require("mongodb").ObjectID;
 
 //to register the user(admin,user)
 
@@ -136,18 +137,45 @@ const opencalendar = async (data, user_id, res) => {
     });
     await userInformation.save();
     return res.status(201).json({
-      message: "U can post infromation now",
+      message: "Informations Sended",
       successs: true,
     });
   } catch (err) {
     console.log(err);
     //implement logger fucntion (winston)
     return res.status(500).json({
+      message:
+        "U need to pick a day and fill all required inputs Name, Surname, Phone and send the photo ",
+      successs: false,
+    });
+  }
+};
+
+const answerCalendar = async (data, user_id, res) => {
+  try {
+    console.log(data);
+    let cal = await calendar.findById(data.id);
+    console.log(cal);
+    if (cal) {
+      cal.State = data.State;
+      cal.time = data.time;
+      await cal.save();
+    }
+    return res.status(200).json({
+      message: "Uptaded",
+      successs: true,
+    });
+  } catch (err) {
+    console.log(err);
+
+    return res.status(500).json({
       message: "unable to work with data",
       successs: false,
     });
   }
 };
+
+
 
 const trying1 = (userInformation) => {
   console.log(userInformation);
@@ -166,4 +194,6 @@ module.exports = {
   serializeUser,
   opencalendar,
   trying1,
+  answerCalendar,
+  
 };

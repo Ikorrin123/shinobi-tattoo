@@ -13,7 +13,7 @@ const { DB, PORT } = require("./config");
 const app = exp();
 
 //Middlewear
-app.use(bp.json());
+app.use(bp.json({ limit: "10mb" }));
 app.use(cors());
 app.use(bp.urlencoded({ extended: true }));
 app.use(passport.initialize());
