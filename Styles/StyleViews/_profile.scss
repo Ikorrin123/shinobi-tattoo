@@ -98,19 +98,144 @@
     &__homePage {
       &--profileCard {
         .form {
-          display: flex;
-          justify-content: flex-start;
-          flex-direction: column;
-          background-color: white;
-          padding: 5px;
           width: 90%;
-          height: 60%;
-          border-radius: 10px;
+          height: 70%;
 
+          &--title {
+            margin-top: 10px;
+            height: 10%;
+
+            h2 {
+              font-size: 20px;
+            }
+            h1 {
+              font-size: 30px;
+            }
+          }
           &--information {
+            margin-top: 10px;
+            height: 90%;
+
             p {
-              font-family: $headerfont;
-              font-size: 18px;
+              font-size: 16px;
+              margin-left: 5px;
+            }
+            span {
+              font-size: 16px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .wrapper {
+    &__homePage {
+      &--profileCard {
+        .form {
+          width: 60%;
+          height: 60%;
+
+          &--title {
+            margin-top: 10px;
+            height: 10%;
+
+            h2 {
+              font-size: 20px;
+            }
+            h1 {
+              font-size: 30px;
+            }
+          }
+          &--information {
+            margin-top: 10px;
+            height: 90%;
+
+            p {
+              font-size: 16px;
+              margin-left: 5px;
+            }
+            span {
+              font-size: 16px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .wrapper {
+    &__homePage {
+      &--profileCard {
+        .form {
+          width: 50%;
+          height: 75%;
+
+          &--title {
+            margin-top: 10px;
+            height: 10%;
+
+            h2 {
+              font-size: 20px;
+            }
+            h1 {
+              font-size: 30px;
+            }
+          }
+          &--information {
+            margin-top: 10px;
+            height: 90%;
+          }
+        }
+      }
+    }
+  }
+}
+
+//Ipad pro
+@media (min-height: 1365px) and (max-height: 1366px) and (-webkit-min-device-pixel-ratio: 1) {
+  .wrapper {
+    &__homePage {
+      &--profileCard {
+        .form {
+          width: 60%;
+          height: 50%;
+
+          &--title {
+            margin-top: 10px;
+            height: 10%;
+          }
+          &--information {
+            margin-top: 10px;
+            height: 90%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1400px) and (max-width: 1919px) {
+  .wrapper {
+    &__homePage {
+      &--profileCard {
+        .form {
+          width: 40%;
+          height: 60%;
+
+          &--title {
+            margin-top: 10px;
+            height: 10%;
+          }
+          &--information {
+            margin-top: 10px;
+            height: 90%;
+
+            p {
               margin-left: 5px;
             }
           }
