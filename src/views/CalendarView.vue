@@ -5,6 +5,7 @@
         v-model="date"
         :attributes="attributes"
         @dayclick="onDayClick"
+        :disabled-dates="{ weekdays: [1, 7] }"
       />
       <ModalAdminViewVue
         v-if="showModal"
@@ -39,6 +40,19 @@ export default {
     ModalAdminViewVue,
   },
 
+  mounted() {
+    axios
+      .get("http://127.0.0.1:5000/api/users/calendar-days", {
+        headers: { Authorization: localStorage.getItem("token") },
+      })
+      .then((res) => {
+        console.log(res);
+        this.notAviable = res.data[0].pickedDay;
+
+        console.log(this.notAviable);
+      });
+  },
+
   data() {
     return {
       showModal: false,
@@ -50,6 +64,7 @@ export default {
       chosenImage: "",
       status: "",
       customerName: "",
+      notAviable: [],
       preview: null,
       image: null,
       newValue: "",
@@ -58,11 +73,10 @@ export default {
 
       attributes: [
         {
-          dot: "red",
+          dot: { backgroundColor: "red" },
           dates: {
             start: new Date("1/1/2018"),
-
-            ordinalWeekdays: { [-1]: 6 }, // ...on the last Friday
+            days: this.notAviable,
           },
         },
       ],

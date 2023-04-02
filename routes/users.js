@@ -81,6 +81,20 @@ router.get("/calendar", userAuth, async (req, res) => {
     });
 });
 
+router.get("/calendar-days", userAuth, async (req, res) => {
+  console.log(req.body.pickedDay);
+  await calendar
+    .find(req.body) // day: req.body.day dla admina do modalu
+    .then(async (calendar) => {
+      console.log(calendar);
+      if (calendar) {
+        return res.json(calendar);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 // users protected router
 router.get(
   "/user-protected",

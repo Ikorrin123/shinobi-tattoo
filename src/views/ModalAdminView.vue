@@ -2,7 +2,7 @@
   <div class="wrapper wrapper__backdrop" @click.self="closeModalAdmin">
     <div class="wrapper__backdrop--modalAdmin">
       <div class="wrapper__backdrop--modalAdmin header">
-        <h1>Client Information</h1>
+        <h1>Status: {{ calendarSendInfo.State }}</h1>
       </div>
       <div class="wrapper__backdrop--modalAdmin information">
         <p>
