@@ -17,6 +17,9 @@
         <p>
           The day client chose: <span>{{ calendarSendInfo.pickedDay }}</span>
         </p>
+        <p>
+          Time: <span>{{ calendarSendInfo.time }}</span>
+        </p>
       </div>
       <div class="wrapper__backdrop--modalAdmin picture">
         <img :src="calendarSendInfo.file" alt="" />

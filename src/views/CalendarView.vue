@@ -5,7 +5,6 @@
         v-model="date"
         :attributes="attributes"
         @dayclick="onDayClick"
-        :disabled-dates="{ weekdays: [1, 7] }"
       />
       <ModalAdminViewVue
         v-if="showModal"
@@ -46,10 +45,8 @@ export default {
         headers: { Authorization: localStorage.getItem("token") },
       })
       .then((res) => {
-        console.log(res);
-        this.notAviable = res.data[0].pickedDay;
-
-        console.log(this.notAviable);
+        console.log(res.data);
+        this.attributes[0].dates = res.data.map((el) => new Date(el.pickedDay));
       });
   },
 
@@ -64,7 +61,7 @@ export default {
       chosenImage: "",
       status: "",
       customerName: "",
-      notAviable: [],
+      disabledDays: [],
       preview: null,
       image: null,
       newValue: "",
@@ -73,11 +70,10 @@ export default {
 
       attributes: [
         {
-          dot: { backgroundColor: "red" },
-          dates: {
-            start: new Date("1/1/2018"),
-            days: this.notAviable,
+          dot: {
+            color: "red",
           },
+          dates: [],
         },
       ],
     };
