@@ -32,6 +32,7 @@ The application uses technologies such as:
 * MongoDB
 * CSS(SCSS)
 * Javasciprt
+* RWD
 
 Thanks to this project, I developed my skills in the Vue.js and SasS by building frontend of the website.
 Also I acquired skills in programming backend in javascript needed to authorization and authentication
