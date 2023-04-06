@@ -30,7 +30,7 @@ The application uses technologies such as:
 * Express
 * Node.js
 * MongoDB
-* CSS(SASS)
+* CSS(SCSS)
 * Javasciprt
 
 Thanks to this project, I developed my skills in the Vue.js and SasS by building frontend of the website.
